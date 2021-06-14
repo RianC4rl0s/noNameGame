@@ -61,7 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a85b9a34a36434da118ee27701df10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   viewCamera: {fileID: 0}
+  fireRate: 0.5
   debugDisplay: {fileID: 0}
 --- !u!1 &4722922557550647515
 GameObject:
@@ -165,8 +167,10 @@ MonoBehaviour:
   shootSound: {fileID: 6457522383040678510}
   bulletSpawnPoint: {fileID: 4722922557550647515}
   bullet: {fileID: 2950400802087462988, guid: 862d5404c9084c34788ce45b2ebba68a, type: 3}
+  fireRate: 0.5
   playerRota: {fileID: 4722922558463032578}
   waitTime: 1
+  shootLight: {fileID: 0}
 --- !u!114 &4722922558463032583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,11 +281,11 @@ Light:
   m_GameObject: {fileID: 7491820860133324791}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 2
+  m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.8396226, g: 0.7254358, b: 0.03564434, a: 1}
   m_Intensity: 3
-  m_Range: 3
+  m_Range: 3.839
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
