@@ -7784,7 +7784,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0, b: 0.055834293, a: 1}
+  m_Color: {r: 0.990566, g: 0.7565098, b: 0.34109113, a: 1}
   m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
@@ -8796,6 +8796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   range: 100
+  shootImpactForce: 30
   fireRate: 2
   initialShootPosition: {fileID: 271755517}
   playerDirection: {fileID: 1977621043}

@@ -10,8 +10,9 @@ public class GunScript : MonoBehaviour
     public float shootImpactForce = 30f;
 
 
-    public float fireRate = 0.5f;
+    public float fireRate = 15f;
     private float currentFireRateTime;
+    private float nextTimeToFire = 0f;
 
 
     public Transform initialShootPosition;
@@ -39,14 +40,13 @@ public class GunScript : MonoBehaviour
 
        
 				
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
 		{
-            if (currentFireRateTime <= 0)
-            {
-               
-                shoot();
-                currentFireRateTime = fireRate;
-            }
+
+            nextTimeToFire = Time.time + 1f / fireRate;
+            shoot();
+            currentFireRateTime = fireRate;
+            
         }
         currentFireRateTime -= Time.deltaTime;
     }
