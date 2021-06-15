@@ -18,6 +18,11 @@ public class PlayerAnimator : MonoBehaviour
     Animator animator;
 
     public Text debugDisplay;
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,7 +68,7 @@ public class PlayerAnimator : MonoBehaviour
 
 
         }
-       
+       // Debug.Log(actuaRotation);
 
         
         if (moveInput.magnitude >= 0.1f)

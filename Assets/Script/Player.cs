@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
 	private float atualFireRate;
 
 
+	public float meleeDamage = 50;
+
 
 	public GameObject playerRota;
 
@@ -23,6 +25,13 @@ public class Player : MonoBehaviour
 
 
 	public Light shootLight;
+
+
+
+	//melee
+	public Transform atackPoint;
+	public float atackRange = 0.5f;
+	public LayerMask enemyLayer;
 
 	//Metodos
 
@@ -52,6 +61,13 @@ public class Player : MonoBehaviour
 			die();
 		}
 
+		//MeleeCombat
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			Atack();
+
+			Debug.Log("Apertou");
+		}
 		
 
 	}
@@ -65,5 +81,24 @@ public class Player : MonoBehaviour
 	void die()
 	{
 		Destroy(gameObject);
+	}
+
+	void Atack()
+	{
+		Collider[] hitEnemies = Physics.OverlapSphere(atackPoint.position,atackRange, enemyLayer);
+
+
+		foreach (Collider enemy in hitEnemies)
+		{
+			Debug.Log("Hit" + enemy.name);
+			enemy.GetComponent<Enemy2Script>().TakeDamage(meleeDamage);
+		}
+
+	}
+	private void OnDrawGizmosSelected()
+	{
+		if (atackPoint == null)
+			return;
+		Gizmos.DrawWireSphere(atackPoint.position, atackRange);
 	}
 }

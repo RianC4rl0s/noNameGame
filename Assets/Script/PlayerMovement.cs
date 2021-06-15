@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
             mousePosition = ray.GetPoint(rayDistance);
 
             controller.LookAt(mousePosition);
-            Debug.Log(rayDistance);
+           // Debug.Log(rayDistance);
         }
 
         Ray teste = new Ray(viewCamera.transform.position, transform.position);
