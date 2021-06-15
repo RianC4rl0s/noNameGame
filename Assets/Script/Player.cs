@@ -45,8 +45,8 @@ public class Player : MonoBehaviour
 	{
 		//shooting
 
-		atualFireRate -= Time.deltaTime;
-		if (Input.GetButton("Fire1")){
+		//atualFireRate -= Time.deltaTime;
+		/*if (Input.GetButton("Fire1")){
 			
 			if(atualFireRate <= 0)
 			{
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
 			}
 						
 			
-		}
+		}*/
 		if(health <= 0)
 		{
 			die();

@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1243982780561432078
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 744691564017955395}
-  m_Layer: 0
-  m_Name: GunHold
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &744691564017955395
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243982780561432078}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2395409661563020610}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1628873523003041424
 Animator:
   serializedVersion: 3
@@ -167,9 +137,15 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 4722922557550647515}
   bullet: {fileID: 2950400802087462988, guid: 862d5404c9084c34788ce45b2ebba68a, type: 3}
   fireRate: 0.5
+  meleeDamage: 50
   playerRota: {fileID: 4722922558463032578}
   waitTime: 1
   shootLight: {fileID: 0}
+  atackPoint: {fileID: 0}
+  atackRange: 0.5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &4722922558463032583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,11 +281,6 @@ GameObject:
 --- !u!4 &4539947086918335841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2ed4997f4d2b8f843b509ba3fa07009c, type: 3}
-  m_PrefabInstance: {fileID: 4074518165683133066}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2395409661563020610 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 2ed4997f4d2b8f843b509ba3fa07009c, type: 3}
   m_PrefabInstance: {fileID: 4074518165683133066}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5247287441378293511

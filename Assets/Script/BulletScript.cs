@@ -12,8 +12,9 @@ public class BulletScript : MonoBehaviour
 
     public GameObject triggeringEnemy;
 
-    public AudioSource hitAudio;
+    //public AudioSource hitAudio;
 
+    public LayerMask targetMask;
     //metodos
 	void Update()
     {
@@ -60,7 +61,7 @@ public class BulletScript : MonoBehaviour
     }
     void onHit()
 	{
-        hitAudio.Play();
+        //hitAudio.Play();
         Destroy(gameObject);
 
 	}

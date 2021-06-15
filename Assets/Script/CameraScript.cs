@@ -15,8 +15,8 @@ public class CameraScript : MonoBehaviour
 
 
 
-	//Metodos
-	private void Update()
+    //Metodos
+    private void Update()
 	{
 		Vector3 position = new Vector3();
 		position.x = player.position.x;
