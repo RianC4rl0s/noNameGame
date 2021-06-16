@@ -7,10 +7,13 @@ public class Enemy2Script : MonoBehaviour
     public float maxHealth = 100;
     private float currentHealth;
 
+
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -21,6 +24,13 @@ public class Enemy2Script : MonoBehaviour
 
     public void TakeDamage(float damage)
 	{
+     
+        if(currentHealth > 0)
+		{
+        animator.SetTrigger("takeDamage");
+
+		}
+
         currentHealth -= damage;
 
 
@@ -31,8 +41,10 @@ public class Enemy2Script : MonoBehaviour
 	}
     void Die()
 	{
-        Debug.Log("EnemyDie");
 
-        Destroy(gameObject);
+        animator.SetTrigger("dying");
+        Debug.Log("EnemyDie");
+       
+        Destroy(gameObject,4f);
 	}
 }

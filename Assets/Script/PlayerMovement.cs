@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 10;
     private float speed;
 
+    Animator animator;
 
 
     /*
@@ -37,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 mousePosition;
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         speed = moveSpeed;
         controller = GetComponent<PlayerController>();
       //  anim = GetComponent<Animator>();
@@ -62,12 +64,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveInput.magnitude >= 0.1f)
         {
-           /// anim.SetBool("isWalking", true);
+            animator.SetBool("isRunning", true);
 
         }
         else
         {
-           // anim.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
         }
 
 

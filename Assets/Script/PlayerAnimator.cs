@@ -29,16 +29,16 @@ public class PlayerAnimator : MonoBehaviour
         atualFireRate = fireRate;
         animator = GetComponent<Animator>();
 
-        actuaRotation = player.transform.rotation;
+        //actuaRotation = player.transform.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
+       /* float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         Vector3 moveInput = new Vector3(horizontal, 0f, vertical);
-
+       */
 
         /*
         Ray ray = viewCamera.ScreenPointToRay(Input.mousePosition);
@@ -50,12 +50,12 @@ public class PlayerAnimator : MonoBehaviour
             
         }*/
 
-        mousePosition = Input.mousePosition;
+       // mousePosition = Input.mousePosition;
         //Debug.Log(mousePosition.x + ";" +mousePosition.z);
 
         
 
-
+        
         atualFireRate -= Time.deltaTime;
         if (Input.GetButton("Fire1"))
         {
@@ -68,9 +68,10 @@ public class PlayerAnimator : MonoBehaviour
 
 
         }
+        
        // Debug.Log(actuaRotation);
 
-        
+        /*
         if (moveInput.magnitude >= 0.1f)
         {
             if (actuaRotation.y > 60 && actuaRotation.y < 120)
@@ -129,9 +130,9 @@ public class PlayerAnimator : MonoBehaviour
         else
         {
              animator.SetBool("isRunning", false);
-            debugDisplay.text = "Esta parado";
+            //debugDisplay.text = "Esta parado";
         }
-     
+     */
         /*
         if(actuaRotation.y > 60 && actuaRotation.y< 120 )
 		{

@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
 
 	public float meleeDamage = 50;
-
+	public float meleeForce = 70;
 
 	public GameObject playerRota;
 
@@ -33,10 +33,14 @@ public class Player : MonoBehaviour
 	public float atackRange = 0.5f;
 	public LayerMask enemyLayer;
 
+
+	//Animations
+	Animator animator;
 	//Metodos
 
 	private void Start()
 	{
+		animator = GetComponentInChildren<Animator>();
 		atualFireRate = fireRate;
 		sleep = waitTime;
 	}
@@ -64,6 +68,7 @@ public class Player : MonoBehaviour
 		//MeleeCombat
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
+			animator.SetTrigger("kick");
 			Atack();
 
 			Debug.Log("Apertou");
@@ -92,6 +97,7 @@ public class Player : MonoBehaviour
 		{
 			Debug.Log("Hit" + enemy.name);
 			enemy.GetComponent<Enemy2Script>().TakeDamage(meleeDamage);
+			enemy.GetComponent<Rigidbody>().AddForce(atackPoint.position*meleeForce);
 		}
 
 	}
