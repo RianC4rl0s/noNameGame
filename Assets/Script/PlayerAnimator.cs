@@ -55,7 +55,7 @@ public class PlayerAnimator : MonoBehaviour
 
         
 
-        
+        /*
         atualFireRate -= Time.deltaTime;
         if (Input.GetButton("Fire1"))
         {
@@ -68,7 +68,7 @@ public class PlayerAnimator : MonoBehaviour
 
 
         }
-        
+        */
        // Debug.Log(actuaRotation);
 
         /*

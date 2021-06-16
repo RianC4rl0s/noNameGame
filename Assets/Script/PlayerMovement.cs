@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     Animator animator;
 
 
+    private Vector3 axisVector;
+    private Vector3 lookedAtPoint;
     /*
     public float jumpForce = 5f;
     private float jump;
@@ -55,21 +57,29 @@ public class PlayerMovement : MonoBehaviour
         //Movement
 
 
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
         Vector3 moveInput = new Vector3(horizontal, 0f, vertical);
         Vector3 moveVelocity = moveInput.normalized;
         //Sprint
 
 
+        //animation
+        axisVector = new Vector3(horizontal,0,vertical);
+        lookedAtPoint = mousePosition;
+        UpdateAnimator();
+        /*animator.SetFloat("Vertical", vertical);
+        animator.SetFloat("Horizontal", horizontal);
+        */
         if (moveInput.magnitude >= 0.1f)
         {
-            animator.SetBool("isRunning", true);
+            
+            //animator.SetBool("isRunning", true);
 
         }
         else
         {
-            animator.SetBool("isRunning", false);
+            //animator.SetBool("isRunning", false);
         }
 
 
@@ -142,6 +152,37 @@ public class PlayerMovement : MonoBehaviour
             shoot();
         }
         */
+    }
+    private void UpdateAnimator()
+    {
+        float forwardBackwardsMagnitude = 0;
+        float rightLeftMagnitude = 0;
+        if (axisVector.magnitude > 0)
+        {
+            Vector3 normalizedLookingAt = lookedAtPoint - transform.position;
+            normalizedLookingAt.Normalize();
+            forwardBackwardsMagnitude = Mathf.Clamp(
+                    Vector3.Dot(axisVector, normalizedLookingAt), -1, 1
+            );
+
+            Vector3 perpendicularLookingAt = new Vector3(
+                   normalizedLookingAt.z, 0, -normalizedLookingAt.x
+            );
+            rightLeftMagnitude = Mathf.Clamp(
+                   Vector3.Dot(axisVector, perpendicularLookingAt), -1, 1
+           );
+
+           // animator.SetBool("isRunning", true);
+
+        }
+        else
+        {
+            //animator.SetBool("isRunning", false);
+        }
+
+        // update the animator parameters
+        animator.SetFloat("Vertical", forwardBackwardsMagnitude);
+        animator.SetFloat("Horizontal", rightLeftMagnitude);
     }
     /*
     void shoot()

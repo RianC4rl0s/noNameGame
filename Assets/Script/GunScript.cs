@@ -32,6 +32,7 @@ public class GunScript : MonoBehaviour
     public float reloadTime = 2;
     private float currentReloadTime;
 
+    public Animator animator;
 
     public Text debugText; 
     //Metodos
@@ -41,7 +42,9 @@ public class GunScript : MonoBehaviour
         currentAmmo = maxAmmo;
         currentFireRateTime = fireRate;
         currentReloadTime = reloadTime;
-        
+
+
+        animator = GetComponentInParent<Animator>();
     }
 
    
@@ -60,7 +63,7 @@ public class GunScript : MonoBehaviour
             shoot();
             currentFireRateTime = fireRate;
             currentAmmo--;
-
+            animator.SetTrigger("shoot");
         }
         if(currentAmmo <= 0)
 		{

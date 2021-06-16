@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
+    
     private Vector3 velocity;
     private Rigidbody myRigidbody;
+
+    
+
 
     void Start()
     {
@@ -30,4 +36,5 @@ public class PlayerController : MonoBehaviour
     {
         myRigidbody.MovePosition(myRigidbody.position + velocity * Time.fixedDeltaTime);
     }
+    
 }
