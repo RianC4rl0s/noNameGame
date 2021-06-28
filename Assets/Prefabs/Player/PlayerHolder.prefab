@@ -138,6 +138,7 @@ MonoBehaviour:
   bullet: {fileID: 2950400802087462988, guid: 862d5404c9084c34788ce45b2ebba68a, type: 3}
   fireRate: 0.5
   meleeDamage: 50
+  meleeForce: 70
   playerRota: {fileID: 4722922558463032578}
   waitTime: 1
   shootLight: {fileID: 0}
@@ -290,6 +291,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4722922558463032579}
     m_Modifications:
+    - target: {fileID: 1247398435812719977, guid: c96d590eac26ff94b935b5bbd006fc52, type: 3}
+      propertyPath: MinDistance
+      value: 1.1056225
+      objectReference: {fileID: 0}
     - target: {fileID: 6762271859997374990, guid: c96d590eac26ff94b935b5bbd006fc52, type: 3}
       propertyPath: m_Name
       value: ShootShound
@@ -304,11 +309,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7479887650231037648, guid: c96d590eac26ff94b935b5bbd006fc52, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.641191
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 7479887650231037648, guid: c96d590eac26ff94b935b5bbd006fc52, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.8339528
+      value: 1.03
       objectReference: {fileID: 0}
     - target: {fileID: 7479887650231037648, guid: c96d590eac26ff94b935b5bbd006fc52, type: 3}
       propertyPath: m_LocalRotation.w

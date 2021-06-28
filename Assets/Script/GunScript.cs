@@ -34,7 +34,10 @@ public class GunScript : MonoBehaviour
 
     public Animator animator;
 
-    public Text debugText; 
+    public Text debugText;
+
+
+    public float spreadFactor = 0.1f ;
     //Metodos
     void Start()
     {
@@ -64,16 +67,13 @@ public class GunScript : MonoBehaviour
             currentFireRateTime = fireRate;
             currentAmmo--;
             animator.SetTrigger("shoot");
+            animator.SetLayerWeight(1,0);
         }
-        if(currentAmmo <= 0)
+        if(currentAmmo <= 0 || (Input.GetKeyDown(KeyCode.R)))
 		{
-            currentReloadTime -= Time.deltaTime;
-            if(currentReloadTime <= 0)
-			{
-                currentAmmo = maxAmmo;
-                currentReloadTime = reloadTime;
-			}
+            reload();
 		}
+		
         currentFireRateTime -= Time.deltaTime;
     }
 	void shoot()
@@ -81,7 +81,15 @@ public class GunScript : MonoBehaviour
         shootSound.Play();
         muzleFlash.Play();
         RaycastHit hit;
-        if(Physics.Raycast(initialShootPosition.position,playerDirection.forward , out hit, range))
+
+        Vector3 shootDirection = initialShootPosition.forward;
+        
+        shootDirection = shootDirection + initialShootPosition.TransformDirection(new Vector3(Random.Range(-spreadFactor, spreadFactor),0,0));
+       
+
+
+        //Physics.Raycast(initialShootPosition.position, playerDirection.forward, out hit, range)
+        if (Physics.Raycast(initialShootPosition.position, shootDirection, out hit, range))
 		{
             Debug.Log(hit.transform.name);
 			
@@ -99,5 +107,14 @@ public class GunScript : MonoBehaviour
             Destroy(impactGO,2f);
 
 		}
+    }
+    void reload()
+	{
+        currentReloadTime -= Time.deltaTime;
+        if (currentReloadTime <= 0)
+        {
+            currentAmmo = maxAmmo;
+            currentReloadTime = reloadTime;
+        }
     }
 }

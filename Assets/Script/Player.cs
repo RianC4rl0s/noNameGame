@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
 	//Variaveis
 	public float health = 100;
-
+	private float currentHealth;
 
 	public AudioSource shootSound;
 	public GameObject bulletSpawnPoint;
@@ -15,9 +15,7 @@ public class Player : MonoBehaviour
 	private float atualFireRate;
 
 
-	public float meleeDamage = 50;
-	public float meleeForce = 70;
-
+	
 	public GameObject playerRota;
 
 	public float waitTime = 1f;
@@ -32,6 +30,8 @@ public class Player : MonoBehaviour
 	public Transform atackPoint;
 	public float atackRange = 0.5f;
 	public LayerMask enemyLayer;
+	public float meleeDamage = 50;
+	public float meleeForce = 70;
 
 
 	//Animations
@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
 		animator = GetComponentInChildren<Animator>();
 		atualFireRate = fireRate;
 		sleep = waitTime;
+		currentHealth = health;
 	}
 
 	private void Update()
@@ -73,7 +74,7 @@ public class Player : MonoBehaviour
 
 			Debug.Log("Apertou");
 		}
-		
+		animator.SetLayerWeight(1, 0);
 
 	}
 	void shoot()
@@ -95,9 +96,29 @@ public class Player : MonoBehaviour
 
 		foreach (Collider enemy in hitEnemies)
 		{
+
 			Debug.Log("Hit" + enemy.name);
 			enemy.GetComponent<Enemy2Script>().TakeDamage(meleeDamage);
 			enemy.GetComponent<Rigidbody>().AddForce(atackPoint.position*meleeForce);
+		}
+
+	}
+	public void TakeDamage(float damage)
+	{
+
+		if (currentHealth > 0)
+		{
+			animator.SetTrigger("takeDamage");
+
+		}
+
+		currentHealth -= damage;
+
+
+		if (currentHealth <= 0)
+		{
+
+			//Die();
 		}
 
 	}

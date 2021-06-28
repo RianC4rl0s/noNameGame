@@ -10,9 +10,11 @@ public class PlayerMovement : MonoBehaviour
     public GameObject bullet;
 
 
-    public float waitTime = 1f;
+    
     */
 
+
+    public float waitTime = 1f;
 
     public Camera viewCamera;
     private PlayerController controller;
@@ -20,22 +22,15 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed = 10;
     private float speed;
+    public float sprintTime = 4;
+    private float currentSprintTime;
 
     Animator animator;
 
 
     private Vector3 axisVector;
     private Vector3 lookedAtPoint;
-    /*
-    public float jumpForce = 5f;
-    private float jump;
-    private bool isJumping;
-    public float groundCheckRadius;
-     private bool isGrounded;
-    public float groundDistance;
-    public Transform groundCheck;
-    public LayerMask whatisGrounded;
-    */
+   
     Vector3 lastPosition;
     private Vector3 mousePosition;
     void Start()
@@ -43,10 +38,8 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         speed = moveSpeed;
         controller = GetComponent<PlayerController>();
-      //  anim = GetComponent<Animator>();
-        //viewCamera = Camera.main;
 
-       // jump = jumpForce;
+        currentSprintTime = sprintTime;
     }
 
     // Update is called once per frame
@@ -68,26 +61,15 @@ public class PlayerMovement : MonoBehaviour
         axisVector = new Vector3(horizontal,0,vertical);
         lookedAtPoint = mousePosition;
         UpdateAnimator();
-        /*animator.SetFloat("Vertical", vertical);
-        animator.SetFloat("Horizontal", horizontal);
-        */
-        if (moveInput.magnitude >= 0.1f)
-        {
-            
-            //animator.SetBool("isRunning", true);
-
-        }
-        else
-        {
-            //animator.SetBool("isRunning", false);
-        }
 
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+
+        if (Input.GetKey(KeyCode.LeftShift) && currentSprintTime  > 0)
         {
-            speed += 40;
+            speed = moveSpeed * 2;
             moveVelocity = moveVelocity * speed;
             controller.Move(moveVelocity);
+            currentSprintTime -= Time.deltaTime;
         }
         else
         {
@@ -95,16 +77,10 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(moveVelocity);
             //Reset Speed
             speed = moveSpeed;
+            currentSprintTime = sprintTime;
         }
-
-        /*
-        if (Input.GetButtonDown("Jump"))
-        {
-
-            controller.Jump(jump);
-
-        }
-        */
+       
+       
 
         //Look at Cursor
         
@@ -123,35 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
        
 
-        /*
-        void OnCollisionEnter(Collision other)
-        {
-            if (other.gameObject.tag == "Ground")
-            {
-                isGrounded = true;
-            }
-        }
-        void OnCollisionExit(Collision other)
-        {
-            if (other.gameObject.tag == "Ground")
-            {
-                isGrounded = false;
-            }
-        }
-        */
-        //shooting
-      
-        /*
-        if (Input.GetButtonDown("Fire1"))
-        {
-            if (waitTime <= 0)
-            {
-
-            }
-
-            shoot();
-        }
-        */
+       
     }
     private void UpdateAnimator()
     {
@@ -172,17 +120,14 @@ public class PlayerMovement : MonoBehaviour
                    Vector3.Dot(axisVector, perpendicularLookingAt), -1, 1
            );
 
-           // animator.SetBool("isRunning", true);
+         
 
         }
-        else
-        {
-            //animator.SetBool("isRunning", false);
-        }
+       
 
-        // update the animator parameters
         animator.SetFloat("Vertical", forwardBackwardsMagnitude);
         animator.SetFloat("Horizontal", rightLeftMagnitude);
+        animator.SetLayerWeight(1, 0);
     }
     /*
     void shoot()
