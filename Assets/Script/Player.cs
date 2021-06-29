@@ -5,6 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	//Variaveis
+
+
+
 	public float health = 100;
 	private float currentHealth;
 
@@ -24,7 +27,8 @@ public class Player : MonoBehaviour
 
 	public Light shootLight;
 
-
+	//healthBar
+	public HealthBar healthBar;
 
 	//melee
 	public Transform atackPoint;
@@ -44,6 +48,8 @@ public class Player : MonoBehaviour
 		atualFireRate = fireRate;
 		sleep = waitTime;
 		currentHealth = health;
+
+		healthBar.SetMaxHealth((int)health);
 	}
 
 	private void Update()
@@ -105,6 +111,7 @@ public class Player : MonoBehaviour
 	}
 	public void TakeDamage(float damage)
 	{
+		healthBar.setHealth((int)currentHealth);
 
 		if (currentHealth > 0)
 		{

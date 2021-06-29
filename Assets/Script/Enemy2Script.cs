@@ -23,12 +23,16 @@ public class Enemy2Script : MonoBehaviour
 
 
 
+    public HealthBar healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         animator = GetComponentInChildren<Animator>();
         currentTimeBtwAtack = timeBtwAtack;
+
+        healthBar.SetMaxHealth((int)maxHealth);
     }
 
     // Update is called once per frame
@@ -41,7 +45,8 @@ public class Enemy2Script : MonoBehaviour
 
     public void TakeDamage(float damage)
 	{
-     
+
+        healthBar.setHealth((int)currentHealth);
         if(currentHealth > 0)
 		{
         animator.SetTrigger("takeDamage");

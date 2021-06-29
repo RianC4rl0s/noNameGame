@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - teste
+  - RoomSpawnPoint
+  - Rooms
+  - CloseRoom
   layers:
   - Default
   - TransparentFX
